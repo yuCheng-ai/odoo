@@ -1,0 +1,14 @@
+services:
+  web:
+    build: .
+    volumes:
+      - .:/opt/odoo
+    ports:
+      - "8069:8069"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      - HOST=host.docker.internal
+      - USER=quickform_user
+      - PASSWORD=qwer@123
+    command: python3 odoo-bin -c odoo.conf --dev=all
