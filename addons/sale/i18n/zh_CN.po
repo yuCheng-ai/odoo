@@ -583,8 +583,7 @@ msgstr ""
 "        <br/><br/>\n"
 "        <t t-set=\"tx_sudo\" t-value=\"object.get_portal_last_transaction()\""
 "/>\n"
-"        您的订单 <span style=\"font-weight:bold;\" t-out=\"object.name or ''\"
-"">S00049</span> ，订单金额为 <span style=\"font-weight:bold;\" t-out=\""
+"        您的订单 <span style=\"font-weight:bold;\" t-out=\"object.name or ''\">S00049</span> ，订单金额为 <span style=\"font-weight:bold;\" t-out=\""
 "format_amount(object.amount_total, object.currency_id) or ''\">$ 10.00</span>"
 "\n"
 "        <t t-if=\"object.state == 'sale' or "
@@ -3648,7 +3647,7 @@ msgstr "没有待开票项目"
 #. module: sale
 #: model_terms:ir.ui.view,arch_db:sale.sale_order_tree
 msgid "Number"
-msgstr "数量"
+msgstr "编号"
 
 #. module: sale
 #: model:ir.model.fields,field_description:sale.field_sale_order__message_needaction_counter
