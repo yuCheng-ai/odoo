@@ -1,0 +1,74 @@
+/* 流云 ERP - 登录页面美化 */
+.oe_login_form {
+    .alert-info {
+        border-radius: 8px !important;
+        background-color: #f0f7ff !important;
+        border-color: #b3d8ff !important;
+        color: #004085 !important;
+        margin-bottom: 20px !important;
+    }
+    
+    .form-control {
+        border-radius: 8px !important;
+        padding: 14px 18px !important;
+        border: 1px solid #d9d9d9 !important;
+        box-shadow: inset 0 1px 2px rgba(0,0,0,0.05) !important;
+        font-size: 15px !important;
+        margin-bottom: 5px !important;
+        &:focus {
+            border-color: #1890ff !important;
+            box-shadow: 0 0 0 2px rgba(24,144,255,0.2) !important;
+        }
+    }
+
+    button[type="submit"] {
+        background-color: #1890ff !important;
+        border-color: #1890ff !important;
+        font-weight: 600 !important;
+        padding: 14px !important;
+        border-radius: 8px !important;
+        font-size: 17px !important;
+        letter-spacing: 2px !important;
+        transition: all 0.3s !important;
+        margin-top: 10px !important;
+        &:hover {
+            background-color: #40a9ff !important;
+            border-color: #40a9ff !important;
+            box-shadow: 0 4px 12px rgba(24,144,255,0.3) !important;
+        }
+    }
+}
+
+.o_database_list {
+    border-radius: 16px !important;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3) !important;
+    border: none !important;
+    background: rgba(255, 255, 255, 0.98) !important;
+    width: 480px !important;
+    max-width: 95% !important;
+    z-index: 2 !important;
+    padding: 20px 10px !important;
+    margin: auto !important;
+
+    .card-body {
+        padding: 2rem !important;
+    }
+}
+
+/* 背景容器 */
+.o_login_container {
+    background: url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat fixed !important;
+    min-height: 100vh !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    position: relative !important;
+    
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(0, 0, 0, 0.4);
+        z-index: 1;
+    }
+}

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- 调整菜单顺序，让“仪表板”成为登录后的默认首页 -->
+    
+    <!-- 1. 提升仪表板的优先级 (原本是 37) -->
+    <record id="spreadsheet_dashboard.spreadsheet_dashboard_menu_root" model="ir.ui.menu">
+        <field name="sequence">1</field>
+    </record>
+
+    <!-- 2. 提升“应用”和“设置”的优先级，方便管理 -->
+    <record id="base.menu_management" model="ir.ui.menu">
+        <field name="sequence">2</field>
+    </record>
+
+    <record id="base.menu_administration" model="ir.ui.menu">
+        <field name="sequence">3</field>
+    </record>
+
+    <!-- 3. 降低“讨论”的优先级 (原本是 5) -->
+    <record id="mail.menu_root_discuss" model="ir.ui.menu">
+        <field name="sequence">100</field>
+    </record>
+
+    <!-- 3. 如果安装了销售模块，也可以把它排在前面 -->
+    <!-- 注意：这里使用 function 或 record 继承，如果模块没安装会报错，
+         但在 depends 里加了对应模块就可以安全引用 -->
+</odoo>

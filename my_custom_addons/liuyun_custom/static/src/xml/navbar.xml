@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <!-- 直接继承主 NavBar 模板，替换掉原来的 t-call 调用 -->
+    <t t-inherit="web.NavBar" t-inherit-mode="extension">
+        
+        <!-- 1. 替换应用菜单调用 (AppsMenu) -->
+        <xpath expr="//t[@t-call='web.NavBar.AppsMenu']" position="replace">
+            <div class="o_navbar_apps_menu">
+                <!-- 顶部 Logo/主页区域 -->
+                <div class="o_sidebar_logo d-flex align-items-center">
+                    <a href="/odoo" class="d-flex align-items-center text-decoration-none">
+                        <img src="/web/static/img/logo.png" class="o_sidebar_logo_img"/>
+                        <span class="o_sidebar_brand_name">流云 ERP</span>
+                    </a>
+                </div>
+                
+                <div class="o_apps_list">
+                    <t t-set="apps" t-value="menuService.getApps()" />
+                    <t t-foreach="apps" t-as="app" t-key="app.id">
+                        <a href="#"
+                           class="o_app_item d-flex align-items-center"
+                           t-att-class="{ 'active': menuService.getCurrentApp() === app }"
+                           t-on-click.prevent="() => this.onNavBarDropdownItemSelection(app)"
+                           t-att-data-menu-xmlid="app.xmlid"
+                           t-att-data-section="app.id">
+                           <t t-if="app.webIconData"><img t-att-src="app.webIconData" class="o_app_icon"/></t><t t-else=""><i class="oi oi-apps o_app_icon"/></t>
+                           <span class="o_app_name" t-esc="app.name"/>
+                        </a>
+                    </t>
+                </div>
+            </div>
+        </xpath>
+
+        <!-- 2. 替换二级菜单调用 (SectionsMenu) -->
+        <xpath expr="//t[@t-call='web.NavBar.SectionsMenu']" position="replace">
+            <div class="o_menu_sections" t-ref="appSubMenus">
+                <t t-set="sections" t-value="currentAppSections" />
+                <ul class="o_menu_sections_list list-unstyled">
+                    <t t-foreach="sections" t-as="section" t-key="section.id">
+                        <t t-if="!section.childrenTree.length"><li class="o_menu_item">
+                            <a href="#" 
+                               class="o_menu_link"
+                               t-on-click.prevent="() => this.onNavBarDropdownItemSelection(section)"
+                               t-att-data-menu-xmlid="section.xmlid"
+                               t-att-data-section="section.id">
+                                <span t-esc="section.name"/>
+                            </a>
+                        </li></t><t t-else=""><li class="o_menu_item has-children">
+                            <div class="o_menu_header">
+                                <span t-esc="section.name"/>
+                            </div>
+                            <ul class="o_submenu_list list-unstyled">
+                                <t t-foreach="section.childrenTree" t-as="child" t-key="child.id">
+                                    <li class="o_submenu_item">
+                                        <a href="#"
+                                           class="o_submenu_link"
+                                           t-on-click.prevent="() => this.onNavBarDropdownItemSelection(child)"
+                                           t-att-data-menu-xmlid="child.xmlid"
+                                           t-att-data-section="child.id">
+                                            <span t-esc="child.name"/>
+                                        </a>
+                                    </li>
+                                </t>
+                            </ul>
+                        </li></t>
+                    </t>
+                </ul>
+            </div>
+        </xpath>
+
+    </t>
+</templates>

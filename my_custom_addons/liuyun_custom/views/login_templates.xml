@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- 继承 web.login 模板来修改登录表单 -->
+    <template id="china_login_layout" inherit_id="web.login" name="China Style Login" priority="1">
+        <!-- 1. 在登录按钮上方添加一个欢迎语 -->
+        <xpath expr="//div[hasclass('oe_login_buttons')]" position="before">
+            <div class="alert alert-info text-center">
+                <h4 style="margin-bottom: 5px; font-weight: 600;">欢迎使用 流云ERP</h4>
+                <p style="font-size: 0.9em; margin-bottom: 0; opacity: 0.8;">专注数字化转型，助力企业高效成长</p>
+            </div>
+        </xpath>
+
+        <!-- 2. 改造输入框：隐藏 Label，美化 Input -->
+        <xpath expr="//div[hasclass('field-login')]//label[@for='login']" position="attributes">
+            <attribute name="class">d-none</attribute>
+        </xpath>
+        <xpath expr="//input[@name='login']" position="attributes">
+            <attribute name="placeholder">请输入登录账号</attribute>
+        </xpath>
+
+        <xpath expr="//div[hasclass('o_caps_lock_warning')]//label[@for='password']" position="attributes">
+            <attribute name="class">d-none</attribute>
+        </xpath>
+        <xpath expr="//input[@name='password']" position="attributes">
+            <attribute name="placeholder">请输入登录密码</attribute>
+        </xpath>
+    </template>
+
+    <!-- 继承 web.login_layout 来修改背景、卡片和 Logo -->
+    <template id="china_login_background" inherit_id="web.login_layout" name="China Login Background" priority="1">
+        <!-- 替换 Logo -->
+        <xpath expr="//div[hasclass('card-body')]//img" position="replace">
+            <div class="text-center mb-4">
+                <i class="fa fa-cloud text-primary" style="font-size: 48px; margin-bottom: 10px;"></i>
+                <h2 style="font-weight: 700; color: #333; letter-spacing: 1px;">流云</h2>
+                <div style="height: 3px; width: 40px; background: #1890ff; margin: 10px auto;"></div>
+            </div>
+        </xpath>
+
+        <!-- 改造登录卡片：增加宽度，去掉阴影（SCSS里加） -->
+        <xpath expr="//div[hasclass('container')]//div" position="attributes">
+            <attribute name="style">max-width: 480px;</attribute>
+            <attribute name="class">card border-0 mx-auto o_database_list</attribute>
+        </xpath>
+
+        <!-- 给最外层容器加个类名 -->
+        <xpath expr="//div[hasclass('container')]" position="attributes">
+            <attribute name="class">container-fluid o_login_container p-0 m-0</attribute>
+        </xpath>
+
+        <!-- 隐藏底部推广 -->
+        <xpath expr="//div[hasclass('text-center', 'small')]" position="attributes">
+            <attribute name="class">d-none</attribute>
+        </xpath>
+    </template>
+</odoo>
